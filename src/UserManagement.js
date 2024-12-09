@@ -54,6 +54,19 @@ const UserManagement = () => {
     setUsers(users.filter((user) => user.id !== id));
   };
 
+  const getStatusClass = (status) => {
+    switch (status) {
+      case "Active":
+        return "text-green-500 ";
+      case "Inactive":
+        return "text-red-500";
+      case "Pending":
+        return "text-orange-500";
+      default:
+        return "text-gray-500";
+    }
+  };
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">User Management</h1>
@@ -128,7 +141,7 @@ const UserManagement = () => {
                 <td className="border px-4 py-2">{user.name}</td>
                 <td className="border px-4 py-2">{user.email}</td>
                 <td className="border px-4 py-2">{user.role}</td>
-                <td className="border px-4 py-2">{user.status}</td>
+                <td className={`border px-4 py-2 ${getStatusClass(user.status)}`}>{user.status}</td>
                 <td className="border px-4 py-2">
                   <button
                     onClick={() => handleEditUser(user.id)}
